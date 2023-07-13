@@ -6,7 +6,7 @@ function* watchAll() {
   yield all([
     takeEvery(ActionRegion.GET_REGION_REQUEST, handleRegion),
     takeEvery(ActionRegion.ADD_REGION_REQUEST, createRegion),
-    takeEvery(ActionRegion.DELETE_REGION_REQUEST),
+    // takeEvery(ActionRegion.DELETE_REGION_REQUEST),
   ]);
 }
 

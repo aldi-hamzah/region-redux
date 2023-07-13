@@ -55,6 +55,7 @@ export default function FormikSagaRegionUpdate(props) {
           id="name"
           value={formik.values.id}
           onChange={formik.handleChange}
+          hidden
         ></input>
         <input
           type="text"
