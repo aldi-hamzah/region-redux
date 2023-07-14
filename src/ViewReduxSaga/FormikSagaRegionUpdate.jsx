@@ -2,29 +2,28 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { UpdateRegionRequest } from '../ReduxSaga/Action/RegionAction';
-import RegionApi from '../api/RegionApi';
 
 export default function FormikSagaRegionUpdate(props) {
+  const dispatch = useDispatch();
   const [previewImg, setPreviewImage] = useState();
   const [upload, setUpload] = useState(false);
 
   const formik = useFormik({
     initialValues: {
-      id: props.setId,
       name: props.setName,
       file: undefined,
+      id: props.setId,
     },
     onSubmit: async (values) => {
       const payload = {
         name: values.name,
+        file: values.file,
       };
       const id = values.id;
-      console.log(id);
+      dispatch(UpdateRegionRequest(payload, id));
       props.setEdit(false);
-      await RegionApi.update(payload, id).then(() => {
-        window.alert(`Data success Updated`);
-        props.setRefresh(true);
-      });
+      window.alert('Data Successfully Update');
+      props.setRefresh(true);
     },
   });
 
@@ -54,7 +53,6 @@ export default function FormikSagaRegionUpdate(props) {
           name="name"
           id="name"
           value={formik.values.id}
-          onChange={formik.handleChange}
           hidden
         ></input>
         <input
@@ -62,7 +60,7 @@ export default function FormikSagaRegionUpdate(props) {
           name="name"
           id="name"
           value={formik.values.name}
-          onChange={formik.handleChange}
+          onChange={formik.handleChange('name')}
         ></input>
       </div>
       <div>

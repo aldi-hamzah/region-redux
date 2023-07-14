@@ -50,9 +50,12 @@ const AddRegionSuccessfully = (state, action) => {
 };
 
 const DeleteRegionSuccessfully = (state, action) => {
+  const updatedRegions = state.regions.filter(
+    (region) => region.id !== action.payload
+  );
   return {
     ...state,
-    regions: action.payload,
+    regions: updatedRegions,
   };
 };
 

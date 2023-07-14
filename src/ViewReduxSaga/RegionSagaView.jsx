@@ -5,8 +5,6 @@ import {
   GetRegionRequest,
 } from '../ReduxSaga/Action/RegionAction';
 import FormikSagaRegion from './FormikSagaRegion';
-import { useFormik } from 'formik';
-import RegionApi from '../api/RegionApi';
 import FormikSagaRegionUpdate from './FormikSagaRegionUpdate';
 
 export default function RegionSagaView() {
@@ -21,13 +19,12 @@ export default function RegionSagaView() {
   useEffect(() => {
     dispatch(GetRegionRequest());
     setRefresh(false);
-  }, [refresh]);
+  }, [dispatch, refresh]);
 
   const onDelete = async (id) => {
-    RegionApi.deleted(id).then(() => {
-      window.alert('Data Succesfully Deleted');
-      setRefresh(true);
-    });
+    dispatch(DeleteRegionRequest(id));
+    window.alert('Data Successfully Delete');
+    setRefresh(true);
   };
 
   return (

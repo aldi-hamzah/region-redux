@@ -54,14 +54,12 @@ export const UpdateRegionRequest = (payload, id) => ({
   id,
 });
 
-export const UpdateRegionSuccess = (payload, id) => ({
+export const UpdateRegionSuccess = (payload) => ({
   type: ActionType.UPDATE_REGION_SUCCESS,
   payload,
-  id,
 });
 
-export const UpdateRegionFailed = (payload, id) => ({
+export const UpdateRegionFailed = (payload) => ({
   type: ActionType.UPDATE_REGION_FAILED,
   payload,
-  id,
 });
